@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var logueadoId = Context.Session.GetInt32("LogueadoId");
+    var nombreCompleto = Context.Session.GetString("LogueadoNombreCompleto");
+}
+
+<div class="container mt-5 text-center">
+    <h1 class="display-4">📦 Obligatorio: Empresa de Envíos</h1>
+
+    @if (logueadoId != null)
+    {
+        <p class="lead mt-4">Hola <strong>@nombreCompleto</strong>, bienvenido al sistema.</p>
+        <a href="@Url.Action("Logout", "Usuario")" class="btn btn-outline-danger mt-3">Cerrar sesión</a>
+    }
+    else
+    {
+        <p class="lead mt-4">Debe iniciar sesión para acceder a la plataforma.</p>
+        <a href="@Url.Action("Login", "Usuario")" class="btn btn-outline-primary mt-3">Iniciar sesión</a>
+    }
+</div>

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Obligatorio.DTOs.DTOs.DTOsEnvio.DTOEnvios>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Envios</h1>
+
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Cliente
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                ID Agencia de Envio
+            </th>
+            <th>
+                Direccion 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mensaje)
+            </th>
+            <th>
+                Tipo de Envio
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumTracking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinalizacion)
+            </th>
+            <th>Entrega en 24hs</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso) kg
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgenciaEnvio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mensaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoEnvio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumTracking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+            </td>
+            <td>
+                    @if (item.valorEntrega == true)
+                    {
+                        @:SI
+                    }
+                    else if (item.valorEntrega == false)
+                    {
+                        @:NO
+                    }
+                </td>
+
+            <td>
+                    @Html.ActionLink("Finalizar", "Finalizar", new { id = item.EnvioID })
+            </td>
+            <td>     
+                    @Html.ActionLink("Agregar Comentario", "Comentar", new { id = item.EnvioID })
+            </td>
+                
+        </tr>
+}
+    </tbody>
+</table>

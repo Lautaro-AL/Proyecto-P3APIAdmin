@@ -1,0 +1,79 @@
+﻿@model Obligatorio.MVC.Models.AltaEnvioViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (TempData["Error"] != null)
+{
+        <div class="alert alert-danger">
+        @TempData["Error"]
+        </div>
+}
+
+@if (TempData["Mensaje"] != null)
+{
+        <div class="alert alert-success">
+        @TempData["Mensaje"]
+        </div>
+}
+
+<h1>Envio</h1>
+
+<h4>Dar de alta un Envio:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div>
+                <label>Tipo de Envio</label>
+                <select class="form-select" asp-items="Model.TipoDeEnvio" asp-for="@Model.Dto.tipoEnvio">
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Dto.Email" class="control-label"></label>
+                <input asp-for="@Model.Dto.Email" class="form-control" />
+                <span asp-validation-for="@Model.Dto.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Dto.Peso" class="control-label"></label>
+                <input asp-for="@Model.Dto.Peso" class="form-control" />
+                <span asp-validation-for="@Model.Dto.Peso" class="text-danger"></span>
+            </div>
+
+            <div id="tipoComun">
+                <label>Agencias</label>
+                <select class="form-select" asp-items="Model.AgenciasaDisponibles" asp-for="@Model.Dto.IDAgenciaEnvio">
+                </select>
+            </div>
+
+            <div id="tipoUrgente">
+                <label asp-for="@Model.Dto.DireccionPostal" class="control-label"></label>
+                <input asp-for="@Model.Dto.DireccionPostal" class="form-control" />
+                <span asp-validation-for="@Model.Dto.DireccionPostal" class="text-danger"></span>
+            </div>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </form>
+        <p>@ViewBag.Mensaje</p>
+    </div>
+</div>
+
+<script src="~/js/Envio/Create.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
