@@ -8,7 +8,7 @@ Este entregable forma parte del sistema desarrollado para una empresa de envíos
 
 API RESTful, desarrollada para exponer los datos del sistema de manera segura y estructurada.
 
-Módulo MVC para Administradores, el cual consume la API y permite a los administradores de la empresa gestionar usuarios, paquetes, envíos, estados y más.
+Módulo MVC para Administradores de la empresa, permite gestionar usuarios, paquetes, envíos, estados y más.
 
 🔧 Tecnología utilizada
 
